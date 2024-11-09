@@ -1,0 +1,16 @@
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.3
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=true
+      - ELASTIC_PASSWORD=your_elastic_password  # Set a strong password
+      - KIBANA_USERNAME=kibana_system
+      - KIBANA_PASSWORD=your_kibana_password  # Set a strong password
+    ports:
+      - "9200:9200"  # Expose Elasticsearch on port 9200
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data  # Persist data
+volumes:
+  elasticsearch_data:
